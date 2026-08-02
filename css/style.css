@@ -47,9 +47,16 @@ header.site-header {
 
 .logo-mark {
   display: block;
-  width: 130px;
+  width: 234px;
   height: auto;
   margin: 0 auto 6px;
+}
+
+.logo-footer {
+  display: block;
+  width: 70px;
+  height: auto;
+  margin: 0 auto 16px;
 }
 
 .wordmark {
