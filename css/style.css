@@ -1,0 +1,186 @@
+:root {
+  --bg: #ffffff;
+  --text: #111111;
+  --muted: #6a6a6a;
+  --line: #e6e6e6;
+  --accent: #6b3fa0;
+  --max-width: 1200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header / nav */
+
+header.site-header {
+  padding: 40px 24px 24px;
+  text-align: center;
+}
+
+.wordmark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: var(--text);
+}
+
+nav.main-nav {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+nav.main-nav a {
+  text-decoration: none;
+  color: var(--text);
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+}
+
+nav.main-nav a:hover,
+nav.main-nav a.active {
+  border-bottom-color: var(--text);
+}
+
+nav.main-nav .divider {
+  width: 1px;
+  height: 14px;
+  background: var(--line);
+}
+
+nav.main-nav a.personal-link {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+nav.main-nav a.personal-link:hover,
+nav.main-nav a.personal-link.active {
+  border-bottom-color: var(--accent);
+}
+
+/* Hero */
+
+.hero {
+  text-align: center;
+  padding: 20px 24px 60px;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 520px;
+  margin: 12px auto 0;
+  font-size: 16px;
+}
+
+/* Masonry gallery */
+
+.gallery {
+  columns: 3 280px;
+  column-gap: 18px;
+  padding: 0 24px 80px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.gallery figure {
+  margin: 0 0 18px;
+  break-inside: avoid;
+}
+
+.gallery img {
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+}
+
+/* Simple content pages (Things placeholder, Personal) */
+
+.page-intro {
+  text-align: center;
+  padding: 20px 24px 40px;
+}
+
+.page-intro h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: 30px;
+}
+
+.coming-soon {
+  text-align: center;
+  color: var(--muted);
+  padding: 60px 24px 120px;
+}
+
+/* Personal section theming */
+
+body.personal .wordmark {
+  color: var(--accent);
+}
+
+.personal-post {
+  max-width: 640px;
+  margin: 0 auto 64px;
+  padding: 0 24px;
+}
+
+.personal-post img {
+  border-radius: 2px;
+  margin-bottom: 16px;
+}
+
+.personal-post .date {
+  color: var(--accent);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.personal-post p {
+  color: var(--text);
+}
+
+/* Footer */
+
+footer.site-footer {
+  text-align: center;
+  padding: 40px 24px 60px;
+  color: var(--muted);
+  font-size: 14px;
+  border-top: 1px solid var(--line);
+}
+
+footer.site-footer a {
+  text-decoration: underline;
+}
