@@ -142,6 +142,59 @@ nav.main-nav a.personal-link.active {
   padding: 60px 24px 120px;
 }
 
+/* About / contact block on Personal page */
+
+.contact-block {
+  text-align: center;
+  padding: 4px 24px 40px;
+}
+
+.contact-block .name {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.contact-block .contact-line {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.contact-block .contact-line a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.contact-block .contact-line a:hover {
+  text-decoration: underline;
+}
+
+.contact-block .sep {
+  color: var(--line);
+  margin: 0 10px;
+}
+
+.portrait-hero {
+  max-width: 640px;
+  margin: 0 auto 56px;
+  padding: 0 24px;
+}
+
+.portrait-hero img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+
+.section-label {
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 13px;
+  color: var(--accent);
+  margin: 0 0 24px;
+}
+
 /* Personal section theming */
 
 body.personal .wordmark {
