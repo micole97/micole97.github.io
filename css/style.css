@@ -54,9 +54,9 @@ header.site-header {
 
 .logo-footer {
   display: block;
-  width: 70px;
+  width: 91px;
   height: auto;
-  margin: 0 auto 16px;
+  margin: 0 auto 8px;
 }
 
 .wordmark {
@@ -255,4 +255,8 @@ footer.site-footer {
 
 footer.site-footer a {
   text-decoration: underline;
+}
+
+footer.site-footer p {
+  margin: 0;
 }
