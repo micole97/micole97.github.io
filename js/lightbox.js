@@ -18,7 +18,7 @@
   const btnPrev = overlay.querySelector(".lightbox-prev");
   const btnNext = overlay.querySelector(".lightbox-next");
 
-  const ZOOM_FACTOR = 3;
+  const ZOOM_FACTOR = 3.5;
   let currentIndex = 0;
 
   function resetZoom() {
