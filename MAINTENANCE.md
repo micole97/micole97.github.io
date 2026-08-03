@@ -6,7 +6,7 @@ needs Claude — everything is done in Finder plus one double-click.
 
 ## The short version
 
-1. Drop new full-size photos into the right `import` folder (see below).
+1. Drop new full-size photos into the right **Drop Zone** folder (see below).
 2. Number them `(1)`, `(2)`, `(3)`... in the order you want them added.
 3. Double-click **`Update Photos.command`** (in the main website folder).
 4. Reorder anything if needed (see "Reordering photos"), then double-click again.
@@ -17,7 +17,7 @@ needs Claude — everything is done in Finder plus one double-click.
 - `Import/Portfolio/People/` — everything on the People page.
 - `Import/Portfolio/Places/` — everything on the Places page.
 - `Import/Portfolio/Things/` — everything on the Things page (empty until you shoot product work).
-- Each of those has an **`import` subfolder** — this is your drop zone for new photos.
+- Each of those has a **`Drop Zone` subfolder** — this is where new photos go.
 
 These folders hold your **original, full-quality photos**. The website never
 uses these directly — it uses smaller, web-friendly copies that get
@@ -25,21 +25,21 @@ automatically generated from them (see "How this works" below).
 
 ## Adding a photo
 
-1. Drop the full-size file into the `import` subfolder of the right
-   category (e.g. `Import/Portfolio/People/import/`).
+1. Drop the full-size file into the `Drop Zone` subfolder of the right
+   category (e.g. `Import/Portfolio/People/Drop Zone/`).
 2. Make sure its filename starts with `(1)`, `(2)`, `(3)`, etc. — this
    just controls the order *among the new photos you're adding right now*.
    If you're only adding one photo, `(1)` is fine.
 3. Double-click **`Update Photos.command`**.
 
-That's it — the photo gets moved out of `import/` into the real category
+That's it — the photo gets moved out of `Drop Zone` into the real category
 folder (renumbered to continue after whatever's already there), resized,
 and added to the live site. A Terminal window will pop up and print what
 it did; press Enter to close it when you're done reading.
 
 ## Removing a photo
 
-Delete the file from its category folder (not `import` — the main
+Delete the file from its category folder (not `Drop Zone` — the main
 folder). Then double-click `Update Photos.command`.
 
 ## Reordering photos
@@ -55,7 +55,7 @@ in a category folder should start with a number, like:
 
 To reorder, rename the numbers. Fastest way for a whole folder:
 
-1. In Finder, select all the photos in the category folder (not `import`).
+1. In Finder, select all the photos in the category folder (not `Drop Zone`).
 2. Right-click → **Rename N items…**
 3. Choose **Format**, set a name and starting number, and Finder will
    number them all in whatever order you selected them in.
@@ -70,7 +70,7 @@ its new home. Then double-click `Update Photos.command`.
 ## Changing the homepage photos
 
 Same process, just using the `Home` folder instead of a nav-page folder.
-Drop new photos in `Import/Portfolio/Home/import/`, or reorder/remove
+Drop new photos in `Import/Portfolio/Home/Drop Zone/`, or reorder/remove
 photos already in `Import/Portfolio/Home/`, then double-click
 `Update Photos.command`. The homepage currently shows 6 photos, but you
 can add more or fewer — the layout adjusts automatically.
@@ -101,7 +101,7 @@ search engines. Example:
 
 Double-click **`Update Photos.command`** in the main website folder. It:
 
-1. Moves anything sitting in an `import/` folder into place, renumbered
+1. Moves anything sitting in a `Drop Zone` folder into place, renumbered
    correctly.
 2. Resizes any new photos and rewrites the photo grids on every page to
    match your folders — whether you imported something new, reordered
@@ -123,12 +123,12 @@ python3 scripts/update_photos.py
 - Every photo gets two web-friendly copies generated: a smaller one for
   the photo grids (2200px) and a larger one for the zoomed-in lightbox
   view (4200px). Your originals in `Import/Portfolio/` are never modified
-  or deleted — only moved from `import/` into the category folder.
+  or deleted — only moved from `Drop Zone` into the category folder.
 - The update only ever touches the photo grid on each page — nothing else
   (text, layout, nav) is affected.
 - If a category folder is empty (like `Things` right now), that page
   automatically shows a "coming soon" message instead of an empty grid.
-- If something in `import/` isn't a photo (like a stray text file), it's
+- If something in `Drop Zone` isn't a photo (like a stray text file), it's
   left alone and flagged in the printed output rather than silently
   ignored.
 - If a rename would ever overwrite an existing photo, it's skipped with a
