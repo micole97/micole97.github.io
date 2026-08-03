@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """
-Regenerates the People/Places/Things galleries from whatever photos are
-currently sitting in Import/Portfolio/<Category>/.
+Regenerates the Home/People/Places/Things galleries from whatever photos
+are currently sitting in Import/Portfolio/<Category>/.
+
+Home is the small curated highlights grid on the homepage (index.html) —
+it works exactly like the other categories, just with its own folder.
 
 Workflow for adding/removing/reordering photos:
   - Add a photo:    drop the file into Import/Portfolio/<Category>/
@@ -28,8 +31,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-CATEGORIES = ["People", "Places", "Things"]
-COMING_SOON_LABEL = {"Things": "Product"}
+CATEGORIES = ["Home", "People", "Places", "Things"]
+COMING_SOON_LABEL = {"Things": "Product", "Home": "Featured"}
+PAGE_FILENAME = {"Home": "index.html"}
 GRID_SIZE = 2200
 GRID_QUALITY = "75"
 LARGE_SIZE = 4200
@@ -50,7 +54,7 @@ def sync_category(category: str):
     src_dir = ROOT / "Import" / "Portfolio" / category
     grid_dir = ROOT / "images" / slug
     large_dir = ROOT / "images" / slug / "large"
-    page_path = ROOT / f"{slug}.html"
+    page_path = ROOT / PAGE_FILENAME.get(category, f"{slug}.html")
 
     grid_dir.mkdir(parents=True, exist_ok=True)
     large_dir.mkdir(parents=True, exist_ok=True)
