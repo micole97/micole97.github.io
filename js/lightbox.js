@@ -1,5 +1,5 @@
 (function () {
-  const thumbs = Array.from(document.querySelectorAll(".gallery img[data-large]"));
+  const thumbs = Array.from(document.querySelectorAll("img[data-large]"));
   if (thumbs.length === 0) return;
 
   const overlay = document.createElement("div");

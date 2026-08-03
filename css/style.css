@@ -220,27 +220,50 @@ body.personal .wordmark {
   color: var(--accent);
 }
 
-.personal-post {
+.post {
+  margin: 0 0 72px;
+}
+
+.post-photo {
+  max-width: 1500px;
+  margin: 0 auto 28px;
+  padding: 0 16px;
+}
+
+.post-photo img {
+  width: 100%;
+  display: block;
+  border-radius: 2px;
+}
+
+.post-body {
   max-width: 640px;
-  margin: 0 auto 64px;
+  margin: 0 auto;
   padding: 0 24px;
 }
 
-.personal-post img {
-  border-radius: 2px;
-  margin-bottom: 16px;
-}
-
-.personal-post .date {
+.post-body .post-date {
   color: var(--accent);
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
 }
 
-.personal-post p {
+.post-body h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: normal;
+  font-size: 24px;
+  margin: 0 0 12px;
+}
+
+.post-body p {
   color: var(--text);
+  margin: 0 0 16px;
+}
+
+.post-body p:last-child {
+  margin-bottom: 0;
 }
 
 /* Lightbox */
