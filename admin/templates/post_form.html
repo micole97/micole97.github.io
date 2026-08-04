@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}{{ "Edit Post" if post else "New Post" }}{% endblock %}
+{% block content %}
+<h1>{{ "Edit Post" if post else "New Post" }}</h1>
+
+<form method="post" enctype="multipart/form-data" class="post-form">
+  <label>Title
+    <input type="text" name="title" value="{{ post.title if post else '' }}">
+  </label>
+
+  <label>Date (shown as-is, e.g. "March 2026")
+    <input type="text" name="date" value="{{ post.date if post else '' }}">
+  </label>
+
+  <label>Body</label>
+  <div class="rich-toolbar">
+    <button data-cmd="bold" data-target="body-editor"><b>B</b></button>
+    <button data-cmd="italic" data-target="body-editor"><i>I</i></button>
+    <button data-cmd="createLink" data-target="body-editor">Link</button>
+  </div>
+  <div id="body-editor" class="rich-editor" contenteditable="true">{{ post.body_html|safe if post else '' }}</div>
+  <input type="hidden" id="body-hidden" name="body_html">
+
+  {% if post %}
+  <h3>Existing photos</h3>
+  <div class="existing-photos">
+    {% for p in existing %}
+    <div class="existing-photo">
+      <img src="{{ url_for('site_images', filename=p.thumb) }}" alt="{{ p.alt }}">
+      <input type="hidden" name="existing_filename" value="{{ p.filename }}">
+      <input type="text" name="existing_alt" value="{{ p.alt }}" placeholder="Caption / alt text">
+      <label><input type="checkbox" name="delete_photos" value="{{ p.filename }}"> Delete</label>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <h3>Add photos</h3>
+  <input type="file" name="photos" accept=".jpg,.jpeg" multiple>
+  <p class="hint">New photos are added with a blank caption — set the caption from this page after saving.</p>
+
+  <button type="submit">Save post</button>
+</form>
+{% endblock %}
+{% block scripts %}
+<script>initRichText('body-editor', 'body-hidden');</script>
+{% endblock %}

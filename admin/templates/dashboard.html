@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="card-grid">
+  {% for slug, name in categories.items() %}
+  <a class="card" href="{{ url_for('category_view', slug=slug) }}">
+    <h2>{{ name }}</h2>
+    <p>{{ counts[slug] }} photo{{ 's' if counts[slug] != 1 else '' }}</p>
+  </a>
+  {% endfor %}
+  <a class="card" href="{{ url_for('posts_list') }}">
+    <h2>Personal Posts</h2>
+    <p>{{ post_count }} post{{ 's' if post_count != 1 else '' }}</p>
+  </a>
+  <a class="card publish-card" href="{{ url_for('publish') }}">
+    <h2>Publish</h2>
+    <p>Commit changes for deployment</p>
+  </a>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Personal Posts{% endblock %}
+{% block content %}
+<h1>Personal Posts</h1>
+<p><a href="{{ url_for('post_new') }}" class="button">+ New post</a></p>
+
+<form id="reorder-form" action="{{ url_for('posts_reorder') }}" method="post"></form>
+<div class="reorder-bar">
+  <p>Drag posts to reorder (top = first on the page), then save.</p>
+  <button type="submit" form="reorder-form">Save order</button>
+</div>
+
+<ul class="photo-grid" id="sortable-list">
+  {% for p in posts %}
+  <li class="photo-item" draggable="true" data-id="{{ p.id }}">
+    {% if p.thumb %}
+      <img src="{{ url_for('site_images', filename=p.thumb) }}" alt="{{ p.title }}">
+    {% else %}
+      <div class="no-photo">No photo</div>
+    {% endif %}
+    <div class="post-meta">
+      <strong>{{ p.title or "(untitled)" }}</strong>
+      <span>{{ p.date }}</span>
+    </div>
+    <a href="{{ url_for('post_edit', pid=p.id) }}" class="button">Edit</a>
+    <form action="{{ url_for('post_delete', pid=p.id) }}" method="post"
+          onsubmit="return confirm('Delete this post?');">
+      <button type="submit" class="delete-btn">Delete</button>
+    </form>
+    <input type="hidden" name="order" value="{{ p.id }}" form="reorder-form">
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+{% block scripts %}
+<script>initSortable('sortable-list');</script>
+{% endblock %}

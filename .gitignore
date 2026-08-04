@@ -2,3 +2,6 @@
 portfolio/
 personal/
 Import/
+admin/venv/
+admin/__pycache__/
+.claude/settings.local.json

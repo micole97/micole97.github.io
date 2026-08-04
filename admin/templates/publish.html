@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Publish{% endblock %}
+{% block content %}
+<h1>Publish</h1>
+<p>This commits your changes locally (title text, resized images, generated HTML). It does not push anywhere yet — that step gets wired up once hosting is set up.</p>
+
+<h3>Changed files</h3>
+<pre class="status-block">{{ status or "Nothing to publish — everything is already committed." }}</pre>
+
+{% if status %}
+<form method="post" class="publish-form">
+  <label>Commit message
+    <input type="text" name="message" value="Update site content" required>
+  </label>
+  <button type="submit">Commit changes</button>
+</form>
+{% endif %}
+{% endblock %}

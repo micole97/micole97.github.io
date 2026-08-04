@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{{ category }}{% endblock %}
+{% block content %}
+<h1>{{ category }}</h1>
+
+<form action="{{ url_for('category_upload', slug=slug) }}" method="post" enctype="multipart/form-data" class="upload-form">
+  <input type="file" name="photos" accept=".jpg,.jpeg" multiple required>
+  <button type="submit">Upload</button>
+</form>
+
+<form id="reorder-form" action="{{ url_for('category_reorder', slug=slug) }}" method="post"></form>
+
+<div class="reorder-bar">
+  <p>Drag photos to reorder, then save.</p>
+  <button type="submit" form="reorder-form">Save order</button>
+</div>
+
+<ul class="photo-grid" id="sortable-list">
+  {% for p in photos %}
+  <li class="photo-item" draggable="true" data-id="{{ p.filename }}">
+    <img src="{{ url_for('site_images', filename=p.thumb) }}" alt="{{ p.alt }}">
+    <form class="caption-form" action="{{ url_for('category_caption', slug=slug, filename=p.filename) }}" method="post">
+      <input type="text" name="alt" value="{{ p.alt }}" placeholder="Caption / alt text">
+      <button type="submit">Save</button>
+    </form>
+    <form action="{{ url_for('category_delete', slug=slug, filename=p.filename) }}" method="post"
+          onsubmit="return confirm('Delete this photo?');">
+      <button type="submit" class="delete-btn">Delete</button>
+    </form>
+    <input type="hidden" name="order" value="{{ p.filename }}" form="reorder-form">
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
+{% block scripts %}
+<script>initSortable('sortable-list');</script>
+{% endblock %}
