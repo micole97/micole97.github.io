@@ -153,3 +153,14 @@ body {
 .btn-publish:disabled { cursor: not-allowed; opacity: 0.6; }
 
 .publish-section { margin-top: 24px; }
+.confirm-row { display: flex; align-items: center; gap: 10px; }
+.confirm-row[hidden] { display: none; }
+.btn-cancel {
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text);
+}

@@ -19,13 +19,31 @@
 <div class="publish-section">
   {% if ahead %}
     <p>{{ ahead }} saved change{{ "s" if ahead != 1 else "" }} ready to publish.</p>
-    <form method="post" action="{{ url_for('publish_push') }}"
-          onsubmit="return confirm('Publish {{ ahead }} change{{ "s" if ahead != 1 else "" }} to the live site now?');">
-      <button type="submit" class="btn-publish">Publish</button>
+    <form method="post" action="{{ url_for('publish_push') }}" id="publish-form">
+      <button type="button" id="publish-trigger" class="btn-publish">Publish</button>
+      <div id="publish-confirm" class="confirm-row" hidden>
+        <span>Send this live now?</span>
+        <button type="submit" class="btn-publish">Yes, publish</button>
+        <button type="button" id="publish-cancel" class="btn-cancel">Cancel</button>
+      </div>
     </form>
   {% else %}
     <button type="button" class="btn-publish" disabled title="Nothing new to publish">Publish</button>
     <p class="hint">{{ "Save your changes first, then Publish becomes available." if status else "Everything is live." }}</p>
   {% endif %}
 </div>
+{% endblock %}
+{% block scripts %}
+{% if ahead %}
+<script>
+  document.getElementById('publish-trigger').addEventListener('click', () => {
+    document.getElementById('publish-trigger').hidden = true;
+    document.getElementById('publish-confirm').hidden = false;
+  });
+  document.getElementById('publish-cancel').addEventListener('click', () => {
+    document.getElementById('publish-trigger').hidden = false;
+    document.getElementById('publish-confirm').hidden = true;
+  });
+</script>
+{% endif %}
 {% endblock %}
