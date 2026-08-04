@@ -9,6 +9,7 @@
 <header class="admin-header">
   <a href="{{ url_for('dashboard') }}" class="admin-logo">Site Admin</a>
   <nav>
+    <a href="{{ url_for('category_view', slug='home') }}">Home</a>
     <a href="{{ url_for('category_view', slug='people') }}">People</a>
     <a href="{{ url_for('category_view', slug='places') }}">Places</a>
     <a href="{{ url_for('category_view', slug='things') }}">Things</a>

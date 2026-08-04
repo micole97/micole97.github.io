@@ -27,7 +27,7 @@ import sync_posts  # noqa: E402
 app = Flask(__name__)
 app.secret_key = "local-admin-only"  # never exposed off localhost
 
-CATEGORIES = {"people": "People", "places": "Places", "things": "Things"}
+CATEGORIES = {"home": "Home", "people": "People", "places": "Places", "things": "Things"}
 EXISTING_NUM_RE = re.compile(r"^(\d+)_")
 PHOTO_EXTS = (".jpg", ".jpeg")
 

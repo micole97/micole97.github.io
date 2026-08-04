@@ -4,6 +4,7 @@
   --text: #222;
   --accent: #7b3f61;
   --accent-light: #e8d9e8;
+  --accent-mid: #ddc2da;
 }
 
 * { box-sizing: border-box; }
@@ -138,12 +139,17 @@ body {
 .publish-form { display: flex; gap: 12px; align-items: flex-end; margin-top: 16px; }
 .publish-form label { display: flex; flex-direction: column; gap: 4px; }
 .publish-form input { padding: 6px; min-width: 300px; }
-.publish-form button {
-  background: var(--accent-light);
-  color: var(--accent);
-  border: 1px solid var(--accent);
+.btn-save,
+.btn-publish {
   padding: 7px 14px;
   border-radius: 4px;
   font-weight: 600;
   cursor: pointer;
+  border: 1px solid var(--accent);
+  color: var(--accent);
 }
+.btn-save { background: var(--accent-light); }
+.btn-publish { background: var(--accent-mid); }
+.btn-publish:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.publish-section { margin-top: 24px; }
