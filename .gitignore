@@ -1,6 +1,4 @@
 .DS_Store
-portfolio/
-personal/
 Import/
 admin/venv/
 admin/__pycache__/
