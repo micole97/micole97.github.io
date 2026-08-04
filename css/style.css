@@ -207,11 +207,11 @@ nav.main-nav a.personal-link.active {
 }
 
 .section-divider {
-  width: 160px;
+  width: 320px;
   max-width: 40%;
   margin: 32px auto 56px;
   border: none;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid #cfcfcf;
 }
 
 .section-label {
