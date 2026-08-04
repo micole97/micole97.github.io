@@ -1,3 +1,9 @@
+@font-face {
+  font-family: "Permanent Marker";
+  src: url("../assets/fonts/PermanentMarker.woff2") format("woff2");
+  font-display: swap;
+}
+
 :root {
   --bg: #ffffff;
   --text: #111111;
@@ -249,10 +255,10 @@ nav.main-nav a.personal-link.active {
 }
 
 .post-body h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Permanent Marker", cursive;
   font-weight: normal;
-  font-size: 24px;
-  margin: 0 0 12px;
+  font-size: 26px;
+  margin: 0 0 14px;
 }
 
 .post-body p {
