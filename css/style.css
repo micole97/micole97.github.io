@@ -36,7 +36,7 @@ img {
 /* Header / nav */
 
 header.site-header {
-  padding: 40px 24px 24px;
+  padding: 24px 24px 24px;
   text-align: center;
 }
 
@@ -49,7 +49,7 @@ header.site-header {
   display: block;
   width: 234px;
   height: auto;
-  margin: 0 auto 6px;
+  margin: 0 auto 24px;
 }
 
 .logo-footer {
@@ -61,7 +61,7 @@ header.site-header {
 
 .wordmark {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 22px;
+  font-size: 25px;
   letter-spacing: 0.08em;
   text-decoration: none;
   color: var(--text);
@@ -215,10 +215,6 @@ nav.main-nav a.personal-link.active {
 }
 
 /* Personal section theming */
-
-body.personal .wordmark {
-  color: var(--accent);
-}
 
 .post {
   max-width: 640px;
