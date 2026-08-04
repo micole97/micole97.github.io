@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parent.parent
 CATEGORIES = ["Home", "People", "Places", "Things"]
 PHOTO_EXTS = (".jpg", ".jpeg")
 COMING_SOON_LABEL = {"Things": "Product", "Home": "Featured"}
+COMING_SOON_TEXT = {"Things": "Coming soon."}
 PAGE_FILENAME = {"Home": "index.html"}
 GRID_SIZE = 2200
 GRID_QUALITY = "75"
@@ -94,10 +95,14 @@ def sync_category(category: str):
     if figures:
         block = '<div class="gallery">\n' + "\n".join(figures) + "\n</div>"
     else:
-        label = COMING_SOON_LABEL.get(category, category)
+        if category in COMING_SOON_TEXT:
+            text = COMING_SOON_TEXT[category]
+        else:
+            label = COMING_SOON_LABEL.get(category, category)
+            text = f"{label} photography coming soon."
         block = (
             '<div class="coming-soon">\n'
-            f"  <p>{label} photography coming soon.</p>\n"
+            f"  <p>{text}</p>\n"
             "</div>"
         )
 
