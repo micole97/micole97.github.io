@@ -32,6 +32,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CATEGORIES = ["Home", "People", "Places", "Things"]
+PHOTO_EXTS = (".jpg", ".jpeg")
 COMING_SOON_LABEL = {"Things": "Product", "Home": "Featured"}
 PAGE_FILENAME = {"Home": "index.html"}
 GRID_SIZE = 2200
@@ -74,7 +75,7 @@ def sync_category(category: str):
     if src_dir.exists():
         photos = sorted(
             p for p in src_dir.iterdir()
-            if p.suffix.lower() == ".jpg" and p.name != "captions.json"
+            if p.suffix.lower() in PHOTO_EXTS and p.name != "captions.json"
         )
 
     figures = []
