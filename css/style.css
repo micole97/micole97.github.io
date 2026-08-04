@@ -61,10 +61,11 @@ header.site-header {
 
 .wordmark {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
+  font-size: clamp(13px, 3.8vw, 25px);
   letter-spacing: 0.08em;
   text-decoration: none;
   color: var(--text);
+  white-space: nowrap;
 }
 
 nav.main-nav {
@@ -203,6 +204,14 @@ nav.main-nav a.personal-link.active {
   width: 100%;
   display: block;
   border-radius: 2px;
+}
+
+.section-divider {
+  width: 160px;
+  max-width: 40%;
+  margin: 32px auto 56px;
+  border: none;
+  border-top: 1px solid var(--line);
 }
 
 .section-label {
