@@ -14,6 +14,7 @@ import json
 import re
 import subprocess
 import sys
+from functools import wraps
 from pathlib import Path
 
 from flask import Flask, render_template, request, redirect, url_for, send_from_directory, flash
@@ -23,13 +24,13 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import sync_galleries  # noqa: E402
 import update_photos  # noqa: E402
 import sync_posts  # noqa: E402
+from constants import CATEGORIES as CATEGORY_NAMES, PHOTO_EXTS  # noqa: E402
 
 app = Flask(__name__)
 app.secret_key = "local-admin-only"  # never exposed off localhost
 
-CATEGORIES = {"home": "Home", "people": "People", "places": "Places", "things": "Things"}
+CATEGORIES = {name.lower(): name for name in CATEGORY_NAMES}
 EXISTING_NUM_RE = re.compile(r"^(\d+)_")
-PHOTO_EXTS = (".jpg", ".jpeg")
 
 
 # ---------- helpers ----------
@@ -104,11 +105,21 @@ def site_images(filename):
 
 # ---------- routes: photo categories ----------
 
+def require_category(view):
+    """Validates the <slug> URL param and injects the matching category name."""
+    @wraps(view)
+    def wrapper(**kwargs):
+        slug = kwargs.get("slug")
+        if slug not in CATEGORIES:
+            return "Unknown category", 404
+        kwargs["category"] = CATEGORIES[slug]
+        return view(**kwargs)
+    return wrapper
+
+
 @app.route("/category/<slug>")
-def category_view(slug):
-    if slug not in CATEGORIES:
-        return "Unknown category", 404
-    category = CATEGORIES[slug]
+@require_category
+def category_view(slug, category):
     captions = load_captions(category)
     photos = list_photos(category)
     photo_rows = [
@@ -123,10 +134,8 @@ def category_view(slug):
 
 
 @app.route("/category/<slug>/upload", methods=["POST"])
-def category_upload(slug):
-    if slug not in CATEGORIES:
-        return "Unknown category", 404
-    category = CATEGORIES[slug]
+@require_category
+def category_upload(slug, category):
     files = request.files.getlist("photos")
     dz = category_dir(category) / update_photos.DROP_ZONE_NAME
     dz.mkdir(parents=True, exist_ok=True)
@@ -151,10 +160,8 @@ def category_upload(slug):
 
 
 @app.route("/category/<slug>/reorder", methods=["POST"])
-def category_reorder(slug):
-    if slug not in CATEGORIES:
-        return "Unknown category", 404
-    category = CATEGORIES[slug]
+@require_category
+def category_reorder(slug, category):
     new_order = request.form.getlist("order")  # list of original filenames, new order
     d = category_dir(category)
     # Rename in two passes to avoid collisions when shuffling numbers.
@@ -175,10 +182,8 @@ def category_reorder(slug):
 
 
 @app.route("/category/<slug>/delete/<path:filename>", methods=["POST"])
-def category_delete(slug, filename):
-    if slug not in CATEGORIES:
-        return "Unknown category", 404
-    category = CATEGORIES[slug]
+@require_category
+def category_delete(slug, filename, category):
     f = category_dir(category) / filename
     if f.exists():
         f.unlink()
@@ -192,10 +197,8 @@ def category_delete(slug, filename):
 
 
 @app.route("/category/<slug>/caption/<path:filename>", methods=["POST"])
-def category_caption(slug, filename):
-    if slug not in CATEGORIES:
-        return "Unknown category", 404
-    category = CATEGORIES[slug]
+@require_category
+def category_caption(slug, filename, category):
     alt = request.form.get("alt", "").strip()
     captions = load_captions(category)
     if alt:

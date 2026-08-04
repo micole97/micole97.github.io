@@ -30,9 +30,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from constants import CATEGORIES, PHOTO_EXTS  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-CATEGORIES = ["Home", "People", "Places", "Things"]
-PHOTO_EXTS = (".jpg", ".jpeg")
 COMING_SOON_LABEL = {"Things": "Product", "Home": "Featured"}
 COMING_SOON_TEXT = {"Things": "Coming soon."}
 PAGE_FILENAME = {"Home": "index.html"}

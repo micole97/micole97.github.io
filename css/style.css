@@ -27,12 +27,6 @@ img {
   max-width: 100%;
 }
 
-.wrap {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
 /* Header / nav */
 
 header.site-header {
@@ -212,15 +206,6 @@ nav.main-nav a.personal-link.active {
   margin: 32px auto 56px;
   border: none;
   border-top: 1px solid #cfcfcf;
-}
-
-.section-label {
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-size: 13px;
-  color: var(--accent);
-  margin: 0 0 24px;
 }
 
 /* Personal section theming */

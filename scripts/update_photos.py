@@ -22,13 +22,14 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from constants import CATEGORIES, PHOTO_EXTS  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-CATEGORIES = ["Home", "People", "Places", "Things"]
 DROP_ZONE_NAME = "Drop Zone"
 
 IMPORT_NUM_RE = re.compile(r"^\((\d+)\)_?")
 EXISTING_NUM_RE = re.compile(r"^(\d+)_")
-PHOTO_EXTS = (".jpg", ".jpeg")
 
 
 def existing_max(category_dir: Path) -> int:
