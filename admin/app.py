@@ -343,20 +343,45 @@ def sanitize_html(html: str) -> str:
 
 # ---------- publish ----------
 
-@app.route("/publish", methods=["GET", "POST"])
-def publish():
-    if request.method == "GET":
-        result = subprocess.run(
-            ["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True
-        )
-        return render_template("publish.html", status=result.stdout, pushed=False)
+def git_ahead_count() -> int:
+    result = subprocess.run(
+        ["git", "rev-list", "--count", "origin/main..HEAD"],
+        cwd=ROOT, capture_output=True, text=True,
+    )
+    if result.returncode != 0:
+        return 0
+    return int(result.stdout.strip() or 0)
 
+
+@app.route("/publish")
+def publish():
+    status = subprocess.run(
+        ["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True
+    ).stdout
+    ahead = git_ahead_count()
+    return render_template("publish.html", status=status, ahead=ahead)
+
+
+@app.route("/publish/save", methods=["POST"])
+def publish_save():
     message = request.form.get("message", "").strip() or "Update site content"
     subprocess.run(["git", "add", "-A"], cwd=ROOT)
     result = subprocess.run(
         ["git", "commit", "-m", message], cwd=ROOT, capture_output=True, text=True
     )
     flash(result.stdout + result.stderr)
+    return redirect(url_for("publish"))
+
+
+@app.route("/publish/push", methods=["POST"])
+def publish_push():
+    result = subprocess.run(
+        ["git", "push", "origin", "main"], cwd=ROOT, capture_output=True, text=True
+    )
+    if result.returncode == 0:
+        flash("Published — live in a minute or two.")
+    else:
+        flash("Publish failed: " + result.stderr)
     return redirect(url_for("publish"))
 
 

@@ -7,7 +7,7 @@
 <pre class="status-block">{{ status or "Nothing to save — everything is already saved." }}</pre>
 
 {% if status %}
-<form method="post" class="publish-form">
+<form method="post" action="{{ url_for('publish_save') }}" class="publish-form">
   <label>Save message
     <input type="text" name="message" value="Update site content" required>
   </label>
@@ -17,7 +17,15 @@
 {% endif %}
 
 <div class="publish-section">
-  <button type="button" class="btn-publish" disabled title="Set up hosting first">Publish</button>
-  <p class="hint">Publish sends your saved changes to the live site. Not wired up yet — needs hosting set up first.</p>
+  {% if ahead %}
+    <p>{{ ahead }} saved change{{ "s" if ahead != 1 else "" }} ready to publish.</p>
+    <form method="post" action="{{ url_for('publish_push') }}"
+          onsubmit="return confirm('Publish {{ ahead }} change{{ "s" if ahead != 1 else "" }} to the live site now?');">
+      <button type="submit" class="btn-publish">Publish</button>
+    </form>
+  {% else %}
+    <button type="button" class="btn-publish" disabled title="Nothing new to publish">Publish</button>
+    <p class="hint">{{ "Save your changes first, then Publish becomes available." if status else "Everything is live." }}</p>
+  {% endif %}
 </div>
 {% endblock %}
